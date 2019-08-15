@@ -11,7 +11,7 @@ class Mock:
         self.expected = []
         self.called = []
 
-    def add_expected(self, name, args, kwards):
+    def add_expected(self, name, *args, **kwargs):
         self.expected.append((name, args, kwards))
 
     def __getattr__(self, key):
@@ -30,7 +30,7 @@ with a:
 
 a = Mock()
 a.add_expected('print', (1,2,3), {'sep':'|'})
-a.add_expected('print', (1,2,3), {'sep':'|'})
+a.add_expected('sum', (1,2,3))
 with a:
     a.print(1,2,3, sep='|')
-    a.print(1,2,3, sep='|')
+    a.sum(1,2,3)
